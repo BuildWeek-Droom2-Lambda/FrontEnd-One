@@ -49,7 +49,7 @@ const CompanyMainUI = () => {
     })
     .catch(err => {
       console.log(err.message);
-  })
+    })
   }  
 
 const handleDelete = (e) => {

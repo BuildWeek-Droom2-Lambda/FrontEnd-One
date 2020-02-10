@@ -32,6 +32,19 @@ const SeekerMainUI = () => {
 
     const userID = localStorage.getItem("userid");
     
+    useEffect(() => {
+        axios
+        .post(`https://droom-node-server.herokuapp.com/api/seekers/${userID}/saved`, savedJob)
+
+        .then(res => {
+            console.log(res);
+        }) 
+
+        .catch(err => {
+            console.log(err.message);
+        })
+    },[savedJob, userID ])
+    
     const ClickHandler = (e) => {
         const jobID = e.target.value;
         console.log(jobID);
@@ -44,17 +57,6 @@ const SeekerMainUI = () => {
             description: theJob.description,
             company_id: theJob.company_id
         });
-
-        axios
-        .post(`https://droom-node-server.herokuapp.com/api/seekers/${userID}/saved`, savedJob)
-    
-        .then(res => {
-            console.log(res);
-        }) 
-    
-        .catch(err => {
-            console.log(err.message);
-        })
     }
 
     const handleDelete = (e) => {
